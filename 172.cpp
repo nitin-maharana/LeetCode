@@ -5,6 +5,18 @@
 
 class Solution {
 public:
+	int trailingZeroes1(int n) {
+        int numZeros = 0;
+        
+        while(n)
+        {
+            numZeros += (n/5);
+            n /= 5;
+        }
+        
+        return numZeros;
+    }
+
     int trailingZeroes(int n) {
         int numZeros = 0;
         
@@ -14,3 +26,4 @@ public:
         return numZeros;
     }
 };
+
