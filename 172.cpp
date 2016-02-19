@@ -5,7 +5,7 @@
 
 class Solution {
 public:
-	int trailingZeroes1(int n) {
+    int trailingZeroes1(int n) {
         int numZeros = 0;
         
         while(n)
