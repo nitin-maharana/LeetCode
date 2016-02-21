@@ -21,4 +21,41 @@ public:
 
         return false;
     }
+
+    bool containsNearbyDuplicate1(vector<int>& nums, int k) {
+        int len = nums.size();
+        
+        unordered_set<int> memory;
+        
+        int startIndex, endIndex;
+        
+        startIndex = 0;
+        endIndex = k;
+        
+        for(int i = startIndex; i <= endIndex && i < len; i++)
+        {
+            if(memory.find(nums[i]) != memory.end())
+                return true;
+            else
+                memory.insert(nums[i]);
+        }
+        
+        endIndex++;
+        
+        while(endIndex < len)
+        {
+            memory.erase(nums[startIndex]);
+            
+            startIndex++;
+            
+            if(memory.find(nums[endIndex]) != memory.end())
+                return true;
+            else
+                memory.insert(nums[endIndex]);
+            
+            endIndex++;
+        }
+        
+        return false;
+    }
 };
