@@ -69,3 +69,54 @@ public:
         return -1;
     }
 };
+
+class Solution1 {
+    int haystackLen, needleLen;
+    
+    void findPrefixArray(string& needle, int *prefix)
+    {
+        prefix[0] = -1;
+        
+        int i = 0, j = -1;
+        
+        while(i < needleLen-1)
+        {
+            if(j == -1 || needle[i] == needle[j])
+            {
+                i++; j++;
+                prefix[i] = j;
+            }
+            else
+                j = prefix[j];
+        }
+    }
+    
+public:
+    int strStr(string haystack, string needle)
+    {
+        haystackLen = haystack.length();
+        needleLen = needle.length();
+        
+        int *prev = new int[needleLen];
+        
+        findPrefixArray(needle, prev);
+        
+        int i = 0, j = 0;
+        
+        while(i < haystackLen && j < needleLen)
+        {
+            if(j == -1 || haystack[i] == needle[j])
+            {
+                i++;
+                j++;
+            }
+            else
+                j = prev[j];
+        }
+        
+        if(j == needleLen)
+            return (i - j);
+        else
+            return -1;
+      }
+};
