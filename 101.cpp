@@ -12,6 +12,8 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+//Iterative Solution.
 class Solution {
     queue<TreeNode*> q1, q2;
 public:
@@ -50,6 +52,28 @@ public:
         if(!root)
             return true;
         
+        return isSymmetric(root->left, root->right);
+    }
+};
+
+//Recursive Solution.
+class Solution {
+public:
+    bool isSymmetric(TreeNode* l, TreeNode* r)
+    {
+        if(!l && !r)
+            return true;
+            
+        if((!l || !r || (l->val != r->val))
+            return false;
+            
+        return (isSymmetric(l->left, r->right) && isSymmetric(l->right, r->left));
+    }
+
+    bool isSymmetric(TreeNode* root) {
+        if(!root)
+            return true;
+            
         return isSymmetric(root->left, root->right);
     }
 };
