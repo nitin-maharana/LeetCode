@@ -5,13 +5,13 @@
  
 class Solution {
 public:
-	bool anotherSolution(int n)
-	{
-		if(n <= 0)
-			return false;
+    bool anotherSolution(int n)
+    {
+        if(n <= 0)
+            return false;
 
-		return ((n & ~-n) == 0);
-	}
+        return ((n & ~-n) == 0);
+    }
 
     bool isPowerOfTwo(int n) {
         if(n <= 0)
