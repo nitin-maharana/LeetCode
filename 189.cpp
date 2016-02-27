@@ -37,3 +37,34 @@ public:
         }
     }
 };
+
+//One more solution using reverse.
+class Solution {
+    int len;
+    
+    void reverseArray(vector<int>& nums, int l, int r)
+    {
+        int t;
+        
+        while(l < r)
+        {
+            t = nums[l];
+            nums[l++] = nums[r];
+            nums[r--] = t;
+        }
+        
+        return;
+    }
+public:
+    void rotate(vector<int>& nums, int k) {
+        len = nums.size();
+        
+        if(!len)
+            return;
+        
+        k = k % len;
+        reverseArray(nums, len-k, len-1);
+        reverseArray(nums, 0, len-k-1);
+        reverseArray(nums, 0, len-1);
+    }
+};
