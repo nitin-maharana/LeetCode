@@ -4,9 +4,22 @@
  */
 
 class Solution {
+    int countNumberOfZeroes(vector<int>& nums)
+    {
+        int count = 0;
+        
+        for(int i: nums)
+            if(!i)
+                count++;
+        
+        return count;
+    }
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
         vector<int> result(nums.size(), 0);
+        
+        if(countNumberOfZeroes(nums) > 1)
+            return result;
         
         int leftProd, rightProd;
         
