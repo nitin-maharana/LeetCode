@@ -3,7 +3,6 @@
  * nitin.maharana@gmail.com
  */
 
-//Iterative Solution.
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -13,6 +12,8 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+//Iterative Solution.
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
