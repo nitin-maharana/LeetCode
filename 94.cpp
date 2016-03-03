@@ -28,13 +28,10 @@ public:
         {
             if(!root)
             {
-                if(!memory.empty())
-                {
-                    root = memory.top();
-                    memory.pop();
-                    result.push_back(root->val);
-                    root = root->right;
-                }
+                root = memory.top();
+                memory.pop();
+                result.push_back(root->val);
+                root = root->right;
             }
             else
             {
