@@ -34,3 +34,20 @@ public:
         return result;
     }
 };
+
+class Solution {
+public:
+    vector<int> grayCode(int n) {
+        int len = 1 << n;
+        
+        vector<int> result(len);
+        
+        if(!n)
+            return result;
+        
+        for(int i = 0; i < len; i++)
+            result[i] = ((i >> 1) ^ i);
+        
+        return result;
+    }
+};
