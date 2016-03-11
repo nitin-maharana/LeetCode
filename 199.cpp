@@ -19,7 +19,7 @@ public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> result;
         
-        if(!root)
+        if(root == NULL)
             return result;
         
         queue<TreeNode*> memory1, memory2;
