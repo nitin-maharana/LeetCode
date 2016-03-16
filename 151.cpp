@@ -91,3 +91,40 @@ public:
         removeSpaceBetweenWords(s);
     }
 };
+
+//Using STL
+class Solution {
+public:
+    void reverseWords(string &s) {
+
+    	reverse(s.begin(), s.end());
+
+    	size_t wordLeft, wordRight, len;
+    	
+    	wordLeft = wordRight = len = 0;
+    	
+    	wordLeft = s.find_first_not_of(" ", 0);
+    	
+    	while(wordLeft != string::npos)
+    	{
+    	    wordRight = s.find(" ", wordLeft);
+    	    
+    	    if(wordRight == string::npos)
+    	        wordRight = s.length();
+    	    
+    	    reverse(s.begin()+wordLeft, s.begin()+wordRight);
+    	    
+    	    move(s.begin()+wordLeft, s.begin()+wordRight, s.begin()+len);
+    	    
+    	    len = len + (wordRight - wordLeft);
+    	    s[len++] = ' ';
+    	    
+    	    wordLeft = s.find_first_not_of(" ", wordRight);
+    	}
+    	
+    	if(len)
+    		s.erase(s.begin()+len-1, s.end());
+    	else
+    	    s = "";
+    }
+};
