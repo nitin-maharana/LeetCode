@@ -18,7 +18,7 @@ class Solution {
         if(l > r || i >= preorder.size())
             return NULL;
         
-        int found = -1;
+        int found;
         
         for(int j = l; j <= r; j++)
         {
@@ -29,16 +29,13 @@ class Solution {
             }
         }
         
-        if(found == -1)
-            return buildTree(inorder, preorder, l, r, i+1);
-        
         TreeNode* head;
         
         head = new TreeNode(preorder[i]);
         
         head->left = buildTree(inorder, preorder, l, found-1, i+1);
         
-        head->right = buildTree(inorder, preorder, found+1, r, i+1);
+        head->right = buildTree(inorder, preorder, found+1, r, i+1+found-l);
     }
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
