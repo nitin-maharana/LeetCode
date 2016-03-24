@@ -18,7 +18,7 @@ class Solution {
         if(l > r || i < 0)
             return NULL;
         
-        int found = -1;
+        int found;
         
         for(int j = l; j <= r; j++)
         {
@@ -29,14 +29,11 @@ class Solution {
             }
         }
         
-        if(found == -1)
-            return buildTree(inorder, postorder, l, r, i-1);
-        
         TreeNode* head;
         
         head = new TreeNode(postorder[i]);
         
-        head->left = buildTree(inorder, postorder, l, found-1, i-1);
+        head->left = buildTree(inorder, postorder, l, found-1, i-1-(r-found));
         
         head->right = buildTree(inorder, postorder, found+1, r, i-1);
     }
