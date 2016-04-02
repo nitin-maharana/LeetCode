@@ -28,3 +28,31 @@ public:
         return isValidBST(root, LONG_MIN, LONG_MAX);
     }
 };
+
+//One more solution with inorder traversal
+class Solution {
+    void isValidBST(TreeNode* root, vector<int>& memory)
+    {
+        if(root == NULL)
+            return;
+        
+        isValidBST(root->left, memory);
+        memory.push_back(root->val);
+        isValidBST(root->right, memory);
+    }
+public:
+    bool isValidBST(TreeNode* root) {
+        
+        if(root == NULL)
+            return true;
+        
+        vector<int> memory;
+        isValidBST(root, memory);
+        
+        for(int i = 1; i < memory.size(); i++)
+            if(memory[i] <= memory[i-1])
+                return false;
+        
+        return true;
+    }
+};
