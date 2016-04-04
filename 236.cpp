@@ -71,9 +71,13 @@ class Solution {
         
         TreeNode *left, *right;
         left = findAnother(root->left, n);
+        
+        if(left)
+            return left;
+            
         right = findAnother(root->right, n);
         
-        return (left ? left : right);
+        return right;
     }
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
