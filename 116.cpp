@@ -61,3 +61,35 @@ public:
         connect(root->right);
     }
 };
+
+//One More Recursive Solution.
+class Solution {
+    void connect(TreeLinkNode* root, unordered_map<int, TreeLinkNode*>& memory, int level)
+    {
+        if(root == nullptr)
+            return;
+        
+        if(memory.find(level) != memory.end())
+        {
+            memory[level]->next = root;
+            memory[level] = root;
+        }
+        else
+            memory[level] = root;
+        
+        connect(root->left, memory, level+1);
+        connect(root->right, memory, level+1);
+        
+        return;
+    }
+public:
+    void connect(TreeLinkNode *root) {
+        if(root == nullptr)
+            return;
+        
+        unordered_map<int, TreeLinkNode*> memory;
+        connect(root, memory, 0);
+        
+        return;
+    }
+};
