@@ -62,7 +62,7 @@ public:
     }
 };
 
-//One More Recursive Solution.
+//One More Recursive Solution - Works for any tree. O(N) - Time, O(H) - Space (Except Recursion Stack).
 class Solution {
     void connect(TreeLinkNode* root, unordered_map<int, TreeLinkNode*>& memory, int level)
     {
@@ -87,6 +87,59 @@ public:
         unordered_map<int, TreeLinkNode*> memory;
         connect(root, memory, 0);
         
+        return;
+    }
+};
+
+//One More Recursive Solution - Works for any tree. O(N) - Time, O(1) - Space (Except Recursion Stack).
+class Solution {
+    void connectUtil(TreeLinkNode *root)
+    {
+        if(root == nullptr)
+            return;
+
+        if(root->left)
+        {
+            if(root->right)
+                root->left->next = root->right;
+            else if(root->next)
+            {
+                if(root->next->left)
+                    root->left->next = root->next->left;
+                else
+                    root->left->next = root->next->right;
+            }
+            else
+                root->left->next = NULL;
+        }
+
+        if(root->right)
+        {
+            if(root->next)
+            {
+                if(root->next->left)
+                    root->right->next = root->next->left;
+                else
+                    root->right->next = root->next->right;
+            }
+            else
+                root->right->next = NULL;
+        }
+
+        connectUtil(root->left);
+        connectUtil(root->right);
+
+        return;
+    }
+public:
+    void connect(TreeLinkNode *root) {
+        if(root == nullptr)
+            return;
+        
+        root->next = NULL;
+        
+        connectUtil(root);
+
         return;
     }
 };
