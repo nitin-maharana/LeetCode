@@ -91,55 +91,123 @@ public:
     }
 };
 
-//One More Recursive Solution - Works for any tree. O(N) - Time, O(1) - Space (Except Recursion Stack).
+//One More Iterative Solution - Works for any tree. Time - O(N), Space - O(1).
 class Solution {
+    TreeLinkNode* getNext(TreeLinkNode *root)
+    {
+        root = root->next;
+        
+        while(root)
+        {
+            if(root->left)
+                return root->left;
+            
+            if(root->right)
+                return root->right;
+            
+            root = root->next;
+        }
+        
+        return NULL;
+    }
+public:
+    void connect(TreeLinkNode *root) {
+        if(root == NULL)
+            return;
+        
+        root->next = NULL;
+        
+        TreeLinkNode *ptr1, *ptr2;
+        
+        ptr1 = root;
+        
+        while(ptr1)
+        {
+            ptr2 = ptr1;
+            
+            while(ptr2)
+            {
+                if(ptr2->left)
+                {
+                    if(ptr2->right)
+                        ptr2->left->next = ptr2->right;
+                    else
+                        ptr2->left->next = getNext(ptr2);
+                }
+                
+                if(ptr2->right)
+                    ptr2->right->next = getNext(ptr2);
+                
+                ptr2 = ptr2->next;
+            }
+            
+            if(ptr1->left)
+                ptr1 = ptr1->left;
+            else if(ptr1->right)
+                ptr1 = ptr1->right;
+            else
+                ptr1 = getNext(ptr1);
+        }
+        
+        return;
+    }
+};
+
+/*
+ * One More Recursive Solution - Works for any tree. Time - O(N), Space - O(1) [Except Recursion Stack].
+ * For some input, It would be TLE, as the problem assumes complete binary tree, it expects to be run on less time.
+ * As this does more work even for complete tree or any tree. So TLE.
+ */
+class Solution {
+    TreeLinkNode* getNext(TreeLinkNode *root)
+    {
+        root = root->next;
+        
+        while(root)
+        {
+            if(root->left)
+                return root->left;
+            
+            if(root->right)
+                return root->right;
+            
+            root = root->next;
+        }
+        
+        return NULL;
+    }
+    
     void connectUtil(TreeLinkNode *root)
     {
-        if(root == nullptr)
+        if(root == NULL)
             return;
-
+        
         if(root->left)
         {
             if(root->right)
                 root->left->next = root->right;
-            else if(root->next)
-            {
-                if(root->next->left)
-                    root->left->next = root->next->left;
-                else
-                    root->left->next = root->next->right;
-            }
             else
-                root->left->next = NULL;
+                root->left->next = getNext(root);
         }
-
+        
         if(root->right)
-        {
-            if(root->next)
-            {
-                if(root->next->left)
-                    root->right->next = root->next->left;
-                else
-                    root->right->next = root->next->right;
-            }
-            else
-                root->right->next = NULL;
-        }
-
+            root->right->next = getNext(root);
+        
+        connectUtil(root->next);
         connectUtil(root->left);
         connectUtil(root->right);
-
+        
         return;
     }
 public:
     void connect(TreeLinkNode *root) {
-        if(root == nullptr)
+        if(root == NULL)
             return;
         
         root->next = NULL;
         
         connectUtil(root);
-
+        
         return;
     }
 };
