@@ -70,12 +70,9 @@ class Solution {
             return;
         
         if(memory.find(level) != memory.end())
-        {
             memory[level]->next = root;
-            memory[level] = root;
-        }
-        else
-            memory[level] = root;
+
+        memory[level] = root;
         
         connect(root->left, memory, level+1);
         connect(root->right, memory, level+1);
