@@ -91,3 +91,51 @@ public:
         return NULL;
     }
 };
+
+//Iterative Solution for the above one.
+class Solution {
+    TreeNode* findNode(TreeNode* root, TreeNode* n)
+    {
+        while(root)
+        {
+            if(root == n)
+                return root;
+            
+            if(root->val < n->val)
+                root = root->right;
+            else
+                root = root->left;
+        }
+        
+        return NULL;
+    }
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root == nullptr || root == p || root == q)
+            return root;
+        
+        TreeNode *lca = NULL;
+        TreeNode *ptr = root;
+        
+        int mn = min(p->val, q->val);
+        int mx = max(p->val, q->val);
+        
+        while(ptr)
+        {
+            if(ptr->val < mn)
+                ptr = ptr->right;
+            else if(ptr->val > mx)
+                ptr = ptr->left;
+            else
+            {
+                lca = ptr;
+                break;
+            }
+        }
+        
+        if(findNode(lca, p) && findNode(lca, q))
+            return lca;
+        
+        return NULL;
+    }
+};
