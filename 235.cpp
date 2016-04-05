@@ -20,7 +20,7 @@ public:
         int mn, mx;
         
         mn = min(p->val, q->val);
-        mx = p->val + q->val - mn;
+        mx = max(p->val, q->val);
         
         while(root)
         {
@@ -31,8 +31,6 @@ public:
             else
                 return root;
         }
-        
-        return root;
     }
 };
 
@@ -40,15 +38,15 @@ public:
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(!root)
+        if(root == p || root == q)
             return root;
             
-        if((root->val >= p->val && root->val <= q->val) || (root->val >= q->val && root->val <= p->val))
-            return root;
-            
-        if(root->val < p->val || root->val < q->val)
+        if(root->val < p->val && root->val < q->val)
             return lowestCommonAncestor(root->right, p, q);
-        else
+        
+        if(root->val > p->val && root->val > q->val)
             return lowestCommonAncestor(root->left, p, q);
+        
+        return root;
     }
 };
