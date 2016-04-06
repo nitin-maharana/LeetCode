@@ -86,3 +86,57 @@ public:
         return result;
     }
 };
+
+//Using one stack, No Modification, Optimized one.
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> result;
+        
+        if(root == NULL)
+            return result;
+        
+        stack<TreeNode*> memory;
+        TreeNode *curr, *temp;
+        
+        if(root->right)
+            memory.push(root->right);
+        
+        memory.push(root);
+        
+        curr = root->left;
+        
+        while(!memory.empty())
+        {
+            if(curr)
+            {
+                if(curr->right)
+                    memory.push(curr->right);
+                
+                memory.push(curr);
+                
+                curr = curr->left;
+            }
+            else
+            {
+                curr = memory.top();
+                memory.pop();
+                
+                if(!memory.empty() && curr->right == memory.top())
+                {
+                    temp = memory.top();
+                    memory.pop();
+                    memory.push(curr);
+                    curr = temp;
+                }
+                else
+                {
+                    result.push_back(curr->val);
+                    curr = NULL;
+                }
+            }
+        }
+
+        return result;
+    }
+};
