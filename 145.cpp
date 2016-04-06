@@ -51,3 +51,38 @@ public:
         return result;
     }
 };
+
+//Using one stack, Do not modify the input tree, Extra reverse operation on result vector.
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> result;
+        
+        if(root == NULL)
+            return result;
+        
+        stack<TreeNode*> memory;
+        TreeNode *curr;
+        
+        memory.push(root);
+        
+        while(!memory.empty())
+        {
+            curr = memory.top();
+            
+            memory.pop();
+            
+            result.push_back(curr->val);
+            
+            if(curr->left)
+                memory.push(curr->left);
+            
+            if(curr->right)
+                memory.push(curr->right);
+        }
+        
+        reverse(result.begin(), result.end());
+        
+        return result;
+    }
+};
