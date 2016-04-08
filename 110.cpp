@@ -50,3 +50,33 @@ public:
         return flag;
     }
 };
+
+//One more solution without global variable.
+class Solution {
+    int isBalancedUtil(TreeNode* root)
+    {
+        if(root == nullptr)
+            return 0;
+        
+        int l, r;
+        
+        l = isBalancedUtil(root->left);
+        
+        if(l == -1)
+            return -1;
+        
+        r = isBalancedUtil(root->right);
+        
+        if(r == -1)
+            return -1;
+        
+        if(abs(l - r) > 1)
+            return -1;
+        
+        return max(l, r) + 1;
+    }
+public:
+    bool isBalanced(TreeNode* root) {
+        return (isBalancedUtil(root) != -1);
+    }
+};
