@@ -94,3 +94,69 @@ public:
             return NULL;
     }
 };
+
+//Solution [With no such assumption] [If any of the node is not present, returns NULL] - Optimal one
+struct Result {
+    TreeNode *node;
+    bool isAncestor;
+    Result(TreeNode* n, bool isAnc) : node(n), isAncestor(isAnc) {}
+};
+
+class Solution {
+    TreeNode* findLCA(TreeNode* root, TreeNode* f)
+    {
+        if(root == NULL || root == f)
+            return root;
+        
+        TreeNode* l = findLCA(root->left, f);
+        
+        if(l)
+            return l;
+        
+        return findLCA(root->right, f);
+    }
+
+    Result* findLCA(TreeNode* root, TreeNode* p, TreeNode* q)
+    {
+        if(root == NULL)
+            return new Result(root, false);
+        
+        if(root == p)
+        {
+            TreeNode* res = findLCA(root, q);
+            
+            return new Result(root, res != NULL);
+        }
+        
+        if(root == q)
+        {
+            TreeNode* res = findLCA(root, p);
+            
+            return new Result(root, res != NULL);
+        }
+        
+        Result *l = findLCA(root->left, p, q);
+        
+        if(l->isAncestor)
+            return l;
+        
+        Result *r = findLCA(root->right, p, q);
+        
+        if(r->isAncestor)
+            return r;
+        
+        if(l->node && r->node)
+            return new Result(root, true);
+        
+        return new Result(l->node ? l->node : r->node, false);
+    }
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        Result *res = findLCA(root, p, q);
+        
+        if(res->isAncestor)
+            return res->node;
+        
+        return NULL;
+    }
+};
