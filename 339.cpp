@@ -4,8 +4,8 @@
  */
 
 class Solution {
-	int depthSum(vector<NestedInteger>& nestedList, int depth)
-	{
+    int depthSum(vector<NestedInteger>& nestedList, int depth)
+    {
         int res = 0;
 
         for(auto l: nestedList)
