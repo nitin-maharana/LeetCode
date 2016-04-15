@@ -14,7 +14,7 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        if(head == NULL || head->next == NULL)
+        if(head == nullptr || head->next == nullptr)
             return head;
         
         ListNode *ptr, *prev, *temp;
@@ -26,7 +26,7 @@ public:
             while(ptr->next && ptr->next->val >= x)
                 ptr = ptr->next;
             
-            if(ptr->next == NULL)
+            if(ptr->next == nullptr)
                 return head;
             
             prev = ptr->next;
@@ -39,7 +39,7 @@ public:
             while(ptr->next && ptr->next->val < x)
                 ptr = ptr->next;
             
-            if(ptr->next == NULL)
+            if(ptr->next == nullptr)
                 return head;
             
             prev = ptr;
