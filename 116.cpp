@@ -17,7 +17,7 @@ class Solution {
     queue<TreeLinkNode*> memory;
 public:
     void connect(TreeLinkNode *root) {
-        if(!root)
+        if(root == nullptr)
             return;
 
         memory.push(root);
@@ -48,7 +48,7 @@ public:
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
-        if(!root)
+        if(root == nullptr)
             return;
         
         if(root->left)
@@ -108,14 +108,14 @@ class Solution {
             root = root->next;
         }
         
-        return NULL;
+        return nullptr;
     }
 public:
     void connect(TreeLinkNode *root) {
-        if(root == NULL)
+        if(root == nullptr)
             return;
         
-        root->next = NULL;
+        root->next = nullptr;
         
         TreeLinkNode *ptr1, *ptr2;
         
@@ -174,12 +174,12 @@ class Solution {
             root = root->next;
         }
         
-        return NULL;
+        return nullptr;
     }
     
     void connectUtil(TreeLinkNode *root)
     {
-        if(root == NULL)
+        if(root == nullptr)
             return;
         
         if(root->left)
@@ -201,10 +201,10 @@ class Solution {
     }
 public:
     void connect(TreeLinkNode *root) {
-        if(root == NULL)
+        if(root == nullptr)
             return;
         
-        root->next = NULL;
+        root->next = nullptr;
         
         connectUtil(root);
         
