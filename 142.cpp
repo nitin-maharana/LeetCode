@@ -14,8 +14,8 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        if(head == NULL)
-            return NULL;
+        if(head == nullptr)
+            return nullptr;
         
         ListNode *slow, *fast;
         
@@ -23,13 +23,13 @@ public:
 
         while(1)
         {
-            if(slow->next == NULL)
-                return NULL;
+            if(slow->next == nullptr)
+                return nullptr;
             
             slow = slow->next;
             
-            if(fast->next == NULL || fast->next->next == NULL)
-                return NULL;
+            if(fast->next == nullptr || fast->next->next == nullptr)
+                return nullptr;
 
             fast = fast->next->next;
             
