@@ -18,7 +18,7 @@ public:
     ListNode* reverseList(ListNode* head) {
         ListNode *prev, *curr, *next;
         
-        prev = next = NULL;
+        prev = next = nullptr;
         
         curr = head;
         
@@ -43,7 +43,7 @@ public:
             
         ListNode *newHead = reverseList(head->next);
         head->next->next = head;
-        head->next = NULL;
+        head->next = nullptr;
         return newHead;
     }
 };
