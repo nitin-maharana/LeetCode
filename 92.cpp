@@ -14,7 +14,7 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int m, int n) {
-        if(m >= n || head == NULL || head->next == NULL)
+        if(m >= n || head == nullptr || head->next == nullptr)
             return head;
 
         ListNode dummyNode(0);
