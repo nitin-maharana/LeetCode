@@ -22,7 +22,7 @@ public:
         
         evenhead = head->next;
         head->next = head->next->next;
-        evenhead->next = NULL;
+        evenhead->next = nullptr;
         
         oddlast = head;
         oddptr = head->next;
@@ -36,7 +36,7 @@ public:
             if(evenptr)
             {
                 oddptr->next = evenptr->next;
-                evenptr->next = NULL;
+                evenptr->next = nullptr;
             }
             
             oddlast = oddptr;
