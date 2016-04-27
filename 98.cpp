@@ -56,3 +56,29 @@ public:
         return true;
     }
 };
+
+//One more solution with inorder traversal and constant memory
+class Solution {
+    bool isValidBST(TreeNode* root, long& curr)
+    {
+        if(root == nullptr)
+            return true;
+        
+        if(isValidBST(root->left, curr))
+        {
+            if(curr >= root->val)
+                return false;
+            
+            curr = root->val;
+            
+            return isValidBST(root->right, curr);
+        }
+        else
+            return false;
+    }
+public:
+    bool isValidBST(TreeNode* root) {
+        long curr = LONG_MIN;
+        return isValidBST(root, curr);
+    }
+};
