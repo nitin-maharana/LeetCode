@@ -13,9 +13,7 @@
  * };
  */
 class Solution {
-    vector<string> result;
-    
-    void binaryTreePaths(TreeNode *root, string visited)
+    void binaryTreePaths(TreeNode *root, string visited, vector<string>& result)
     {
         if(root->left == nullptr && root->right == nullptr)
         {
@@ -25,19 +23,21 @@ class Solution {
         }
         
         if(root->left)
-            binaryTreePaths(root->left, visited + to_string(root->val) + "->");
+            binaryTreePaths(root->left, visited + to_string(root->val) + "->", result);
             
         if(root->right)
-            binaryTreePaths(root->right, visited + to_string(root->val) + "->");
+            binaryTreePaths(root->right, visited + to_string(root->val) + "->", result);
         
         return;
     }
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> result;
+        
         if(root == nullptr)
             return result;
             
-        binaryTreePaths(root, "");
+        binaryTreePaths(root, "", result);
         
         return result;
     }
