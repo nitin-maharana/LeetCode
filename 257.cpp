@@ -17,7 +17,7 @@ class Solution {
     
     void binaryTreePaths(TreeNode *root, string visited)
     {
-        if(!root->left && !root->right)
+        if(root->left == nullptr && root->right == nullptr)
         {
             visited += to_string(root->val);
             result.push_back(visited);
@@ -34,7 +34,7 @@ class Solution {
     }
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
-        if(!root)
+        if(root == nullptr)
             return result;
             
         binaryTreePaths(root, "");
