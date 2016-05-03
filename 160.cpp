@@ -35,7 +35,7 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         
         if(!headA || !headB)
-            return NULL;
+            return nullptr;
 
         int lenA, lenB;
         
@@ -58,6 +58,6 @@ public:
             ptrB = ptrB->next;
         }
         
-        return NULL;
+        return nullptr;
     }
 };
