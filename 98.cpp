@@ -15,7 +15,7 @@
 class Solution {
     bool isValidBST(TreeNode* root, long l, long r)
     {
-        if(root == NULL)
+        if(root == nullptr)
             return true;
         
         if(root->val <= l || root->val >= r)
@@ -33,7 +33,7 @@ public:
 class Solution {
     void isValidBST(TreeNode* root, vector<int>& memory)
     {
-        if(root == NULL)
+        if(root == nullptr)
             return;
         
         isValidBST(root->left, memory);
@@ -43,7 +43,7 @@ class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         
-        if(root == NULL)
+        if(root == nullptr)
             return true;
         
         vector<int> memory;
