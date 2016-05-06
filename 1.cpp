@@ -63,3 +63,43 @@ public:
         return result;
     }
 };
+
+//Without using HashMap. O(nlogn) Solution. According to latest modification of question.
+class Solution {
+    static bool ascending(pair<int, int>& n1, pair<int, int>& n2)
+    {
+        return (n1.first < n2.first);
+    }
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<pair<int, int>> memory;
+        
+        for(int i = 0; i < nums.size(); i++)
+            memory.push_back(make_pair(nums[i], i));
+
+        sort(memory.begin(), memory.end(), ascending);
+        
+        int l, r;
+        vector<int> result;
+        
+        l = 0;
+        r = nums.size()-1;
+        
+        while(l < r)
+        {
+            if((memory[l].first + memory[r].first) == target)
+            {
+                result.push_back(memory[l].second);
+                result.push_back(memory[r].second);
+                return result;
+            }
+            
+            if((memory[l].first + memory[r].first) > target)
+                r--;
+            else
+                l++;
+        }
+        
+        return result;
+    }
+};
