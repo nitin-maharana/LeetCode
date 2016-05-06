@@ -100,6 +100,32 @@ public:
                 l++;
         }
         
+        memory.clear();
+        
+        return result;
+    }
+};
+
+//Using HashMap. Time : O(n), Space : O(n).
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> memory;
+        vector<int> result;
+        
+        for(int i = 0; i < nums.size(); i++)
+        {
+            if(memory.find(target-nums[i]) != memory.end())
+            {
+                result.push_back(memory[target-nums[i]]);
+                result.push_back(i);
+                return result;
+            }
+            
+            memory[nums[i]] = i;
+        }
+        
+        memory.clear();
         return result;
     }
 };
