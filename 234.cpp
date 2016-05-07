@@ -47,7 +47,7 @@ class Solution {
         ListNode* h = reverseList(head->next);
         
         head->next->next = head;
-        head->next = NULL;
+        head->next = nullptr;
         
         return h;
     }
