@@ -15,7 +15,7 @@
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == NULL)
+        if(root == nullptr)
             return root;
             
         TreeNode *temp;
