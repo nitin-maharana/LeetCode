@@ -15,7 +15,7 @@
 class Solution {
     pair<int,int> robUtil(TreeNode* root)
     {
-        if(root == NULL)
+        if(root == nullptr)
             return make_pair(0, 0);
         
         pair<int, int> left, right;
