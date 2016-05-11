@@ -19,14 +19,14 @@ public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> result;
         
-        if(!root)
+        if(root == nullptr)
             return result;
         
         stack<TreeNode*> memory;
         
         while(!memory.empty() || root)
         {
-            if(!root)
+            if(root == nullptr)
             {
                 root = memory.top();
                 memory.pop();
@@ -50,7 +50,7 @@ class Solution {
     
     void inorderTraversalUtil(TreeNode *root)
     {
-        if(!root)
+        if(root == nullptr)
             return;
         
         inorderTraversalUtil(root->left);
