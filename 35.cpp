@@ -27,6 +27,9 @@ public:
         if(target == nums[l])
             return l;
     
-        return target > nums[l] ? l+1 : l;
+        if(target > nums[l])
+            return l+1;
+        else
+            return l;
     }
 };
